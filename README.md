@@ -34,7 +34,7 @@ The add-on registers persistent 2D drawing callbacks using the `bl_op_region_2d`
 
 To bypass stale context errors typical of long-running viewport rendering callbacks, the draw routine executes as a no-argument wrapper function, querying the active window region, 3D perspective matrix (`RegionView3D`), and underlying model arrays fresh on every screen redraw:
 
-$$\mathbf{X}_{\text{screen}}, \mathbf{Y}_{\text{screen}} = \text{view3d\_utils.location\_3d\_to\_region\_2d}(\text{region}, \text{rv3d}, \mathbf{P}_{\text{world}})$$
+To bypass stale-context errors typical of long-running viewport rendering callbacks, the draw routine executes as a no-argument wrapper function, querying the active window region, the 3D perspective matrix (`RegionView3D`), and the underlying model arrays fresh on every screen redraw using `view3d_utils.location_3d_to_region_2d`.
 
 A continuous, modal background event controller captures global system inputs via a `Ctrl + Click` keymap layer to capture selection bounding boxes around the computed 2D screen coordinates of drawing dots without blocking standard geometry selection.
 
